@@ -1,0 +1,28 @@
+{
+  "name": "reaper",
+  "version": "0.0.1",
+  "description": "My own personal RSS reader service",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "~3.5.2",
+    "backbone": "^1.1.2",
+    "jquery": "^2.1.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.5.2",
+    "gulp-browserify": "~0.4.6",
+    "gulp-uglify": "~0.2.1",
+    "gulp-concat": "~2.1.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jerryorr/reaper.git"
+  },
+  "author": "Jerry Orr <orr94@yahoo.com>",
+  "license": "Apache v2",
+  "readmeFilename": "README.md",
+  "gitHead": "d6312d2b00344b1bc3e1e98f942c47c23d17e4ea"
+}
