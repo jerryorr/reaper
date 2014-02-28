@@ -1,8 +1,8 @@
 var Backbone = require('backbone')
   _ = require('underscore')
 
-var FeedItem = Backbone.View.extend({
-  className: 'fr-feed-list-item',
+var FeedListFeedView = Backbone.View.extend({
+  className: 'fr-feed-list-feed',
 
   events: {
     'click': '_select'
@@ -33,24 +33,22 @@ module.exports = Backbone.View.extend({
   render: function () {
     var feedCount = this.collection.size()
 
-    // this.$el.append(feedCount ? 'You have ' + feedCount + ' feeds' :  'Add some feeds to get started!')
-
     var self = this
 
     this.feedViews = this.collection.map(function (feed) {
-      return new FeedItem({model: feed})
+      return new FeedListFeedView({model: feed})
     })
 
-    _.each(this.feedViews, function (feed) {
-      self.$el.append(feed.render().el)
-      self.listenTo(feed, 'select', function (selectedFeedModel) {
-        _.chain(self.feedViews).filter(function (feed) {
-          return feed.model.get('_id') !== selectedFeedModel.get('_id')
-        }).each(function (feed) {
-          feed.toggleSelect(false)
+    _.each(this.feedViews, function (feedView) {
+      self.$el.append(feedView.render().el)
+      self.listenTo(feedView, 'select', function (selectedFeed) {
+        _.chain(self.feedViews).filter(function (feedView) {
+          return feedView.model.get('_id') !== selectedFeed.get('_id')
+        }).each(function (feedView) {
+          feedView.toggleSelect(false)
         })
 
-        self.trigger('feed:select', selectedFeedModel)
+        self.trigger('feed:select', selectedFeed)
       })
     })
 

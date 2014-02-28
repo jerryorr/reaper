@@ -20,7 +20,7 @@ body, html {
   padding: 0px !important;
 }
 
-.fr-feed-list-item {
+.fr-feed-list-feed {
   border-bottom: solid thin black;
   width: 100%;
   padding: 5px;
@@ -29,7 +29,7 @@ body, html {
   background-color: #CCC
 }
 
-.fr-feed-list-item.selected {
+.fr-feed-list-feed.selected {
   background-color: #FAFAFA;
   color: #0F0F0F;
   border-right: solid thin #FFF;
@@ -38,6 +38,22 @@ body, html {
 .fr-feed-content {
   width: 100%;
   height: 100%;
+}
+
+.fr-feed-content-article-list {
+  width: 100%;
+  border-top: solid thin #AAA;
+}
+
+.fr-feed-content-article {
+  width: 100%;
+  border-bottom: solid thin #AAA;
+  padding: 5px 0 5px 0;
+}
+
+.fr-feed-content-article .title {
+  font-weight: bold;
+  margin-right: 5px;
 }
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)

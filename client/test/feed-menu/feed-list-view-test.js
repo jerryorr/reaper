@@ -24,7 +24,7 @@ describe('feed-list-view', function () {
     assert(FeedListView, 'FeedListView module should be defined')
     var listView = new FeedListView({collection: feeds}).render()
 
-    assert.equal(listView.$el.find('.fr-feed-list-item').length, 3)
+    assert.equal(listView.$el.find('.fr-feed-list-feed').length, 3)
   })
 
   it('raises feed:select event on click', function (done) {
@@ -36,13 +36,13 @@ describe('feed-list-view', function () {
       done()
     })
 
-    listView.$el.find('.fr-feed-list-item')[1].click()
+    listView.$el.find('.fr-feed-list-feed')[1].click()
   })
 
   it('adds .select to clicked item, removes on others', function () {
     var listView = new FeedListView({collection: feeds}).render()
 
-    var items = listView.$el.find('.fr-feed-list-item')
+    var items = listView.$el.find('.fr-feed-list-feed')
 
     function assertSelected(selectedIndex) {
       items.each(function (i, item) {

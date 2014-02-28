@@ -3,8 +3,8 @@
 var Backbone = require('backbone')
   _ = require('underscore')
 
-var FeedItem = Backbone.View.extend({
-  className: 'fr-feed-list-item',
+var FeedListFeedView = Backbone.View.extend({
+  className: 'fr-feed-list-feed',
 
   events: {
     'click': '_select'
@@ -35,24 +35,22 @@ module.exports = Backbone.View.extend({
   render: function () {
     var feedCount = this.collection.size()
 
-    // this.$el.append(feedCount ? 'You have ' + feedCount + ' feeds' :  'Add some feeds to get started!')
-
     var self = this
 
     this.feedViews = this.collection.map(function (feed) {
-      return new FeedItem({model: feed})
+      return new FeedListFeedView({model: feed})
     })
 
-    _.each(this.feedViews, function (feed) {
-      self.$el.append(feed.render().el)
-      self.listenTo(feed, 'select', function (selectedFeedModel) {
-        _.chain(self.feedViews).filter(function (feed) {
-          return feed.model.get('_id') !== selectedFeedModel.get('_id')
-        }).each(function (feed) {
-          feed.toggleSelect(false)
+    _.each(this.feedViews, function (feedView) {
+      self.$el.append(feedView.render().el)
+      self.listenTo(feedView, 'select', function (selectedFeed) {
+        _.chain(self.feedViews).filter(function (feedView) {
+          return feedView.model.get('_id') !== selectedFeed.get('_id')
+        }).each(function (feedView) {
+          feedView.toggleSelect(false)
         })
 
-        self.trigger('feed:select', selectedFeedModel)
+        self.trigger('feed:select', selectedFeed)
       })
     })
 
@@ -107,7 +105,7 @@ describe('feed-list-view', function () {
     assert(FeedListView, 'FeedListView module should be defined')
     var listView = new FeedListView({collection: feeds}).render()
 
-    assert.equal(listView.$el.find('.fr-feed-list-item').length, 3)
+    assert.equal(listView.$el.find('.fr-feed-list-feed').length, 3)
   })
 
   it('raises feed:select event on click', function (done) {
@@ -119,13 +117,13 @@ describe('feed-list-view', function () {
       done()
     })
 
-    listView.$el.find('.fr-feed-list-item')[1].click()
+    listView.$el.find('.fr-feed-list-feed')[1].click()
   })
 
   it('adds .select to clicked item, removes on others', function () {
     var listView = new FeedListView({collection: feeds}).render()
 
-    var items = listView.$el.find('.fr-feed-list-item')
+    var items = listView.$el.find('.fr-feed-list-feed')
 
     function assertSelected(selectedIndex) {
       items.each(function (i, item) {
@@ -144,7 +142,7 @@ describe('feed-list-view', function () {
     assertSelected(0)
   })
 })
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1a018400.js","/")
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bb7a211b.js","/")
 },{"../../src/js/feed-menu/feed":2,"../../src/js/feed-menu/feed-list-view":1,"../../src/js/feed-menu/feeds":3,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"backbone":5,"buffer":7,"jQuery":11}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 //     Backbone.js 1.1.2
