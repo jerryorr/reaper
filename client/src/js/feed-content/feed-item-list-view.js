@@ -1,10 +1,10 @@
 var Backbone = require('backbone')
 
 module.exports = Backbone.View.extend({
-  className: 'well',
+  className: 'fr-feed-content-item-list',
 
   render: function () {
-    this.$el.append('Welcome to Feed Reaper. Add some feeds to get started!')
+    // this.$el.append()
     return this
   }
 })

@@ -1,7 +1,41 @@
 body {
   padding-top: 50px;
 }
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
+
+body, html {
+  height: 100%;
+}
+
+#content {
+  font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+  height: 100%;
+  margin-left: 0px;
+  padding-left: 0px;
+  background-color: #FAFAFA;
+}
+
+.fr-feed-menu {
+  height: 100%;
+  border-right: solid thin black;
+  padding: 0px !important;
+}
+
+.fr-feed-list-item {
+  border-bottom: solid thin black;
+  width: 100%;
+  padding: 5px;
+  font-size: 120%;
+  color: #666;
+  background-color: #CCC
+}
+
+.fr-feed-list-item.selected {
+  background-color: #FAFAFA;
+  color: #0F0F0F;
+  border-right: solid thin #FFF;
+}
+
+.fr-feed-content {
+  width: 100%;
+  height: 100%;
 }
