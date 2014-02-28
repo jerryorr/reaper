@@ -5,6 +5,7 @@ var gulp = require('gulp')
 
 var paths = {
   scripts: ['./client/src/js/**/*.js'],
+  tests: ['./client/test/**/*.js'],
   css: ['./client/src/css/**/*.css']
 }
 
@@ -35,6 +36,16 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('./client/js'))
 })
 
+gulp.task('test-scripts', function() {
+    // Single entry point to browserify
+    gulp.src('./client/test/feed-menu/feed-list-view-test.js')
+        .pipe(browserify({
+          insertGlobals : true
+        }))
+        // TODO need a proper name for the consolidated test bundle
+        .pipe(gulp.dest('./client/test'))
+})
+
 gulp.task('css', function() {
     // Single entry point to browserify
     gulp.src(paths.css)
@@ -52,5 +63,6 @@ gulp.task('default', function(){
 // Rerun the task when a file changes
 gulp.task('watch', function () {
   gulp.watch(paths.scripts, ['scripts']);
+  gulp.watch(paths.tests.concat(paths.scripts), ['test-scripts']);
   gulp.watch(paths.css, ['css']);
 })
