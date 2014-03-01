@@ -74,7 +74,9 @@ var Backbone = require('backbone')
   , Feed = require('./feed')
 
 module.exports = Backbone.Collection.extend({
-  model: Feed
+  model: Feed,
+
+  url: '/api/feeds'
 })
 }).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../src/js/feed-menu/feeds.js","/../../src/js/feed-menu")
 },{"./feed":2,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"backbone":5,"buffer":7}],4:[function(require,module,exports){
@@ -142,7 +144,7 @@ describe('feed-list-view', function () {
     assertSelected(0)
   })
 })
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bb7a211b.js","/")
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_b84a909.js","/")
 },{"../../src/js/feed-menu/feed":2,"../../src/js/feed-menu/feed-list-view":1,"../../src/js/feed-menu/feeds":3,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"backbone":5,"buffer":7,"jQuery":11}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 //     Backbone.js 1.1.2

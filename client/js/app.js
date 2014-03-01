@@ -11,65 +11,36 @@ var FeedMenu = require('./feed-menu')
 
 Backbone.$ = $
 
-// TODO set up XHR
-var models = [
-  new Feed({ _id: '1', name: 'Coding Horror'}),
-  new Feed({ _id: '2', name: 'Jerry on Java'})
-]
-
-var articles = {
-  1: [
-    new Article({
-      _id: 'a1',
-      title: 'Something about Discourse',
-      description: 'This is a blog post about Discourse. It might be really long, or just a summary.',
-      link: 'http://codinghorror.com'
-    }),
-    new Article({
-      _id: 'a2',
-      title: 'Awesome advice',
-      description: 'Some strongly worded advice about a programming topic. It should at least be long enough for the description to wrap in the RSS Feed content area.',
-      link: 'http://codinghorror.com'
-    }),
-    new Article({
-      _id: 'a3',
-      title: 'Something else about some other topic',
-      description: 'Some more strongly worded advice about some other programming topic. It should at least be long enough for the description to wrap in the RSS Feed content area.',
-      link: 'http://codinghorror.com'
-    })
-  ],
-  2: [
-    new Article({
-      _id: 'a4',
-      title: 'Something nobody is reading',
-      description: 'Some article I wrote that nobody cares about',
-      link: 'http://blog.jerryorr.com'
-    })
-  ]
-}
-
 var feeds = new Feeds()
-feeds.reset(models)
 
 var feedMenu = new FeedMenu({
   collection: feeds
 })
 
-$('#content').append(feedMenu.render().el)
+feeds.fetch({
+  success: function () {
+    $('#content').append(feedMenu.render().el)
+  }
+})
 
 var feedContent;
 feedMenu.on('feed:select', function (feedModel) {
   // TODO maybe update instead of destroy
   // TODO change to release once implemented
   feedContent && feedContent.remove()
-  articleCollection = new Articles()
-  articleCollection.reset(articles[feedModel.id])
-  feedContent = new FeedContent({model: feedModel, collection: articleCollection})
-  $('#content').append(feedContent.render().el)
+
+  articleCollection = new Articles({feed: feedModel})
+  // TODO only fetch if I haven't already fetched and set up a websocket
+  articleCollection.fetch({
+    success: function () {
+      feedContent = new FeedContent({model: feedModel, collection: articleCollection})
+      $('#content').append(feedContent.render().el)
+    }
+  })
 })
 
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_93c0de92.js","/")
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_41940c2a.js","/")
 },{"./feed-content":5,"./feed-content/article":3,"./feed-content/articles":4,"./feed-menu":9,"./feed-menu/feed":7,"./feed-menu/feeds":8,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":15,"backbone":10,"buffer":12,"jQuery":16}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var Backbone = require('backbone')
@@ -116,7 +87,15 @@ var Backbone = require('backbone')
   , Article = require('./article')
 
 module.exports = Backbone.Collection.extend({
-  model: Article
+  model: Article,
+
+  initialize: function (options) {
+    this.feed = options.feed
+  },
+
+  url: function () {
+    return '/api/feeds/' + this.feed.id + '/articles'
+  }
 })
 }).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/feed-content/articles.js","/feed-content")
 },{"./article":3,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":15,"backbone":10,"buffer":12}],5:[function(require,module,exports){
@@ -213,7 +192,9 @@ var Backbone = require('backbone')
   , Feed = require('./feed')
 
 module.exports = Backbone.Collection.extend({
-  model: Feed
+  model: Feed,
+
+  url: '/api/feeds'
 })
 }).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/feed-menu/feeds.js","/feed-menu")
 },{"./feed":7,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":15,"backbone":10,"buffer":12}],9:[function(require,module,exports){

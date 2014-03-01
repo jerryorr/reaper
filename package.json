@@ -7,7 +7,9 @@
     "gulp": "~3.5.2",
     "backbone": "^1.1.2",
     "jquery": "^2.1.0",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "express": "^3.4.8",
+    "feedparser": "^0.16.6"
   },
   "devDependencies": {
     "gulp": "~3.5.2",
