@@ -9,7 +9,8 @@
     "jquery": "^2.1.0",
     "underscore": "^1.6.0",
     "express": "^3.4.8",
-    "feedparser": "^0.16.6"
+    "feedparser": "^0.16.6",
+    "request": "^2.34.0"
   },
   "devDependencies": {
     "gulp": "~3.5.2",
