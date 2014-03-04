@@ -38,12 +38,12 @@ gulp.task('scripts', function() {
 
 gulp.task('test-scripts', function() {
     // Single entry point to browserify
-    gulp.src('./client/test/feed-menu/feed-list-view-test.js')
+    gulp.src('./client/test/all-tests.js')
         .pipe(browserify({
           insertGlobals : true
         }))
         // TODO need a proper name for the consolidated test bundle
-        .pipe(gulp.dest('./client/test'))
+        .pipe(gulp.dest('./client/test/bundle'))
 })
 
 gulp.task('css', function() {

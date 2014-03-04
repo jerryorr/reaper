@@ -5,6 +5,7 @@ var FeedListView = require('../../src/js/feed-menu/feed-list-view')
   , $ = require('jQuery')
 
 // TODO this needs to be in a place for all tests
+// idea: have a backbone-test module, which does the following and exports it
 var Backbone = require('backbone')
 Backbone.$ = require('jQuery')
 

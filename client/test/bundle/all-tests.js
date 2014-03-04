@@ -1,6 +1,31 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var Backbone = require('backbone')
+  , _ = require('underscore')
+
+module.exports = Backbone.View.extend({
+  className: 'fr-feed-content-article',
+
+  render: function () {
+    this.$el.append('<span class="title">' + this.model.get('title') + '</span>'
+      + '<span class="description">' + this.model.get('description') + '</span>'
+      + '<a class="link btn btn-default" target="fr-' + this.model.id + '" href="' + this.model.get('link') + '" title="View Full Page">'
+      + '<span class="glyphicon glyphicon-arrow-right"></span></a>')
+    return this
+  }
+})
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../src/js/feed-content/article-view.js","/../src/js/feed-content")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"backbone":9,"buffer":11,"underscore":16}],2:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var Backbone = require('backbone')
+
+module.exports = Backbone.Model.extend({
+  idAttribute: '_id'
+})
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../src/js/feed-content/article.js","/../src/js/feed-content")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"backbone":9,"buffer":11}],3:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var Backbone = require('backbone')
   _ = require('underscore')
 
 var FeedListFeedView = Backbone.View.extend({
@@ -59,16 +84,16 @@ module.exports = Backbone.View.extend({
 })
 
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../src/js/feed-menu/feed-list-view.js","/../../src/js/feed-menu")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"backbone":5,"buffer":7,"underscore":12}],2:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../src/js/feed-menu/feed-list-view.js","/../src/js/feed-menu")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"backbone":9,"buffer":11,"underscore":16}],4:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var Backbone = require('backbone')
 
 module.exports = Backbone.Model.extend({
   idAttribute: '_id'
 })
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../src/js/feed-menu/feed.js","/../../src/js/feed-menu")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"backbone":5,"buffer":7}],3:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../src/js/feed-menu/feed.js","/../src/js/feed-menu")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"backbone":9,"buffer":11}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var Backbone = require('backbone')
   , Feed = require('./feed')
@@ -78,8 +103,45 @@ module.exports = Backbone.Collection.extend({
 
   url: '/api/feeds'
 })
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../src/js/feed-menu/feeds.js","/../../src/js/feed-menu")
-},{"./feed":2,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"backbone":5,"buffer":7}],4:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../src/js/feed-menu/feeds.js","/../src/js/feed-menu")
+},{"./feed":4,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"backbone":9,"buffer":11}],6:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+require('./feed-content/article-view-test')
+require('./feed-menu/feed-list-view-test')
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_5f37a37a.js","/")
+},{"./feed-content/article-view-test":7,"./feed-menu/feed-list-view-test":8,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}],7:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var ArticleView = require('../../src/js/feed-content/article-view')
+  , Article = require('../../src/js/feed-content/article')
+  , assert = chai.assert
+  , $ = require('jQuery')
+
+// TODO this needs to be in a place for all tests
+var Backbone = require('backbone')
+Backbone.$ = require('jQuery')
+
+describe('article-view', function () {
+  var article
+
+  beforeEach(function () {
+    article = new Article({
+      id: 'id1',
+      title: 'title1',
+      description: 'description1',
+      link: 'http://jerryorr.com/link1'
+    })
+  })
+
+  it ('renders', function () {
+    var view = new ArticleView({model: article}).render()
+
+    assert.equal(view.$el.find('.title').html(), 'title1')
+    assert.equal(view.$el.find('.description').html(), 'description1')
+    assert.equal(view.$el.find('a.link').attr('href'), 'http://jerryorr.com/link1')
+  })
+})
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/feed-content/article-view-test.js","/feed-content")
+},{"../../src/js/feed-content/article":2,"../../src/js/feed-content/article-view":1,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"backbone":9,"buffer":11,"jQuery":15}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var FeedListView = require('../../src/js/feed-menu/feed-list-view')
   , Feeds = require('../../src/js/feed-menu/feeds')
@@ -88,6 +150,7 @@ var FeedListView = require('../../src/js/feed-menu/feed-list-view')
   , $ = require('jQuery')
 
 // TODO this needs to be in a place for all tests
+// idea: have a backbone-test module, which does the following and exports it
 var Backbone = require('backbone')
 Backbone.$ = require('jQuery')
 
@@ -144,8 +207,8 @@ describe('feed-list-view', function () {
     assertSelected(0)
   })
 })
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_b84a909.js","/")
-},{"../../src/js/feed-menu/feed":2,"../../src/js/feed-menu/feed-list-view":1,"../../src/js/feed-menu/feeds":3,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"backbone":5,"buffer":7,"jQuery":11}],5:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/feed-menu/feed-list-view-test.js","/feed-menu")
+},{"../../src/js/feed-menu/feed":4,"../../src/js/feed-menu/feed-list-view":3,"../../src/js/feed-menu/feeds":5,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"backbone":9,"buffer":11,"jQuery":15}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 //     Backbone.js 1.1.2
 
@@ -1756,8 +1819,8 @@ describe('feed-list-view', function () {
 
 }));
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/backbone/backbone.js","/../../../node_modules/backbone")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"buffer":7,"underscore":6}],6:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/backbone/backbone.js","/../../node_modules/backbone")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11,"underscore":10}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 //     Underscore.js 1.6.0
 //     http://underscorejs.org
@@ -3103,8 +3166,8 @@ describe('feed-list-view', function () {
   }
 }).call(this);
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/backbone/node_modules/underscore/underscore.js","/../../../node_modules/backbone/node_modules/underscore")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"buffer":7}],7:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/backbone/node_modules/underscore/underscore.js","/../../node_modules/backbone/node_modules/underscore")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}],11:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * The buffer module from node.js, for the browser.
@@ -4218,8 +4281,8 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/index.js","/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"base64-js":8,"buffer":7,"ieee754":9}],8:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/index.js","/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"base64-js":12,"buffer":11,"ieee754":13}],12:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
@@ -4343,8 +4406,8 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib/b64.js","/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"buffer":7}],9:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib/b64.js","/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/base64-js/lib")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}],13:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
@@ -4431,8 +4494,8 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/ieee754/index.js","/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/ieee754")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"buffer":7}],10:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/ieee754/index.js","/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/buffer/node_modules/ieee754")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}],14:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 // shim for using process in browser
 
@@ -4488,8 +4551,8 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js","/../../../node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"buffer":7}],11:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js","/../../node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /*!
  * jQuery JavaScript Library v2.1.0
@@ -13603,8 +13666,8 @@ return jQuery;
 
 }));
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/jQuery/dist/jquery.js","/../../../node_modules/jQuery/dist")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"buffer":7}],12:[function(require,module,exports){
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/jQuery/dist/jquery.js","/../../node_modules/jQuery/dist")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 //     Underscore.js 1.6.0
 //     http://underscorejs.org
@@ -14950,5 +15013,5 @@ return jQuery;
   }
 }).call(this);
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../../node_modules/underscore/underscore.js","/../../../node_modules/underscore")
-},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":10,"buffer":7}]},{},[4])
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/underscore/underscore.js","/../../node_modules/underscore")
+},{"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}]},{},[6])
