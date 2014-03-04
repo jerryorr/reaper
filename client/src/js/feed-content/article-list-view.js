@@ -1,5 +1,6 @@
 var Backbone = require('backbone')
   , _ = require('underscore')
+  , ArticleView = require('./article-view')
 
 module.exports = Backbone.View.extend({
   className: 'fr-feed-content-article-list',
@@ -15,15 +16,6 @@ module.exports = Backbone.View.extend({
       self.$el.append(articleView.render().el)
     })
 
-    return this
-  }
-})
-
-var ArticleView = Backbone.View.extend({
-  className: 'fr-feed-content-article',
-
-  render: function () {
-    this.$el.append('<span class="title">' + this.model.get('title') + '</span><span>' + this.model.get('description') + '</span>')
     return this
   }
 })
