@@ -31,9 +31,13 @@ module.exports.articles = function (feedId, next) {
 
 var readFeed = module.exports.readFeed = function (feed, next) {
   var articles = []
+    , feedTitle = null
   feedReader.read(feed.url)
     .on('error', function(error) {
       next(err)
+    })
+    .on('readable', function() {
+      feedTitle = this.meta.title
     })
     .pipe(es.map(addId))
     .pipe(es.map(cleanItems))
@@ -41,7 +45,10 @@ var readFeed = module.exports.readFeed = function (feed, next) {
       articles.push(article)
     })
     .on('end', function () {
-      next(null, articles)
+      next(null, {
+        title: feedTitle,
+        articles: articles
+      })
     })
 }
 

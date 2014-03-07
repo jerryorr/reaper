@@ -18,11 +18,11 @@ module.exports.start = function () {
   })
 
   app.get('/api/feeds/:feedId/articles', function (req, res) {
-    feeds.articles(req.params.feedId, function (err, articles) {
+    feeds.articles(req.params.feedId, function (err, feed) {
       if (err) {
         return res.json(500, {error: err})
       }
-      res.json(articles)
+      res.json(feed.articles)
     })
   })
 
