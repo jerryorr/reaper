@@ -3,6 +3,9 @@ var FeedParser = require('feedparser')
   , _ = require('underscore')
   , OutStream = require('./outstream')
   , feedReader = require('./feed-reader')
+  , es = require('event-stream')
+  , crypto = require('crypto')
+  , _ = require('underscore')
 
 // TODO eventually get this list from a real data store
 var feeds = [
@@ -22,28 +25,49 @@ function getFeed (feedId) {
 
 module.exports.articles = function (feedId, next) {
   var feed = getFeed(feedId)
-    , articles = []
+
+  readFeed(feed, next)
+}
+
+var readFeed = module.exports.readFeed = function (feed, next) {
+  var articles = []
   feedReader.read(feed.url)
     .on('error', function(error) {
       next(err)
     })
-    .on('readable', function() {
-      var stream = this
-        , meta = this.meta
-        , item
-
-      while (item = stream.read()) {
-        var article = {
-          _id: item.link,
-          title: item.title,
-          description: item.description,
-          link: item.link
-        }
-
-        articles.push(article)
-      }
+    .pipe(es.map(addId))
+    .pipe(es.map(cleanItems))
+    .on('data', function(article) {
+      articles.push(article)
     })
     .on('end', function () {
       next(null, articles)
     })
+}
+
+function addId (item, callback) {
+  var id = item.guid
+
+  // feedparser has a few fallbacks for guid, including id and link
+
+  if (!id && item.title) {
+    id = crypto.createHash('sha1').update(item.title).digest('hex')
+  }
+
+  if (!id) {
+    callback(new Error('could not determine an _id for item'))
+  }
+
+  callback(null, _.extend({ _id: id }, item))
+}
+
+function cleanItems (item, callback) {
+  var article = {
+    _id: item._id,
+    title: item.title,
+    description: item.description,
+    link: item.link
+  }
+
+  callback(null, article)
 }
