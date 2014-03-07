@@ -10,13 +10,17 @@
     "underscore": "^1.6.0",
     "express": "^3.4.8",
     "feedparser": "^0.16.6",
-    "request": "^2.34.0"
+    "request": "^2.34.0",
+    "event-stream": "^3.1.0"
   },
   "devDependencies": {
     "gulp": "~3.5.2",
     "gulp-browserify": "~0.4.6",
     "gulp-uglify": "~0.2.1",
-    "gulp-concat": "~2.1.7"
+    "gulp-concat": "~2.1.7",
+    "mocha": "^1.17.1",
+    "chai": "^1.9.0",
+    "nock": "^0.27.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

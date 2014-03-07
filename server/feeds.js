@@ -2,6 +2,7 @@ var FeedParser = require('feedparser')
   , request = require('request')
   , _ = require('underscore')
   , OutStream = require('./outstream')
+  , feedReader = require('./feed-reader')
 
 // TODO eventually get this list from a real data store
 var feeds = [
@@ -19,50 +20,30 @@ function getFeed (feedId) {
   })
 }
 
-// TODO return stream instead of buffering the whole thing
-module.exports.articles = function (feedId) {
-  var out = new OutStream()
-
+module.exports.articles = function (feedId, next) {
   var feed = getFeed(feedId)
+    , articles = []
+  feedReader.read(feed.url)
+    .on('error', function(error) {
+      next(err)
+    })
+    .on('readable', function() {
+      var stream = this
+        , meta = this.meta
+        , item
 
-  var req = request(feed.url)
-    , feedparser = new FeedParser()
+      while (item = stream.read()) {
+        var article = {
+          _id: item.link,
+          title: item.title,
+          description: item.description,
+          link: item.link
+        }
 
-  req.on('error', function (error) {
-    next(err)
-  })
-  req.on('response', function (res) {
-    var stream = this
-
-    if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'))
-
-    stream.pipe(feedparser)
-  })
-
-
-  feedparser.on('error', function(error) {
-    next(err)
-  })
-  feedparser.on('readable', function() {
-    // This is where the action is!
-    var stream = this
-      , meta = this.meta // **NOTE** the "meta" is always available in the context of the feedparser instance
-      , item
-
-    while (item = stream.read()) {
-      var article = {
-        _id: item.link,
-        title: item.title,
-        description: item.description,
-        link: item.link
+        articles.push(article)
       }
-
-      out.write(JSON.stringify(article))
-    }
-  })
-  feedparser.on('end', function () {
-    out.emit('end')
-  })
-
-  return out
+    })
+    .on('end', function () {
+      next(null, articles)
+    })
 }
