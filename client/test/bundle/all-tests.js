@@ -8,9 +8,12 @@ module.exports = Backbone.View.extend({
 
   render: function () {
     this.$el.append('<span class="title">' + this.model.get('title') + '</span>'
-      + '<span class="description">' + this.model.get('description') + '</span>'
+      + '<span class="summary">' + this.model.get('summary') + '</span>'
       + '<a class="link btn btn-default" target="fr-' + this.model.id + '" href="' + this.model.get('link') + '" title="View Full Page">'
       + '<span class="glyphicon glyphicon-arrow-right"></span></a>')
+
+    // TODO logic to show full article ('description')
+
     return this
   }
 })
@@ -108,7 +111,7 @@ module.exports = Backbone.Collection.extend({
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 require('./feed-content/article-view-test')
 require('./feed-menu/feed-list-view-test')
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_71243a1.js","/")
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_c896e7d9.js","/")
 },{"./feed-content/article-view-test":7,"./feed-menu/feed-list-view-test":8,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":14,"buffer":11}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var ArticleView = require('../../src/js/feed-content/article-view')

@@ -6,6 +6,8 @@ var FeedParser = require('feedparser')
   , es = require('event-stream')
   , crypto = require('crypto')
   , _ = require('underscore')
+  , htmlparser = require('htmlparser2')
+  , HtmlEntities = require('html-entities').AllHtmlEntities
 
 // TODO eventually get this list from a real data store
 var feeds = [
@@ -76,5 +78,38 @@ function cleanItems (item, callback) {
     link: item.link
   }
 
+  var summary = ''
+    , htmlEntities = new HtmlEntities()
+    , code = false
+    , done = false
+
+  var parser = new htmlparser.Parser({
+    onopentag: function (tag) {
+      if (tag === 'style' || tag === 'script') {
+        code = true
+      }
+    },
+    ontext: function(text) {
+      if (!code && !done) {
+        // TODO this can leave a ton of whitespace between chunks, like on Coding Horror's App-pocolypse Now article
+        summary += htmlEntities.decode(text)
+
+        if (summary.length > 100) {
+          done = true
+          summary = summary.substring(0, 100)
+        }
+      }
+    },
+    onclosetag: function (tag) {
+      if (tag === 'style' || tag === 'script') {
+        code = false
+      }
+    }
+  })
+
+  parser.write(article.description)
+  parser.end()
+
+  article.summary = summary
   callback(null, article)
 }

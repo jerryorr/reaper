@@ -11,7 +11,9 @@
     "express": "^3.4.8",
     "feedparser": "^0.16.6",
     "request": "^2.34.0",
-    "event-stream": "^3.1.0"
+    "event-stream": "^3.1.0",
+    "htmlparser2": "^3.5.1",
+    "html-entities": "^1.0.10"
   },
   "devDependencies": {
     "gulp": "~3.5.2",

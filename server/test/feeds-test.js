@@ -27,7 +27,7 @@ describe('feeds', function () {
       assert.equal(a.link, 'http://blog.jerryorr.com/2013/10/using-nodejs-streams-to-massage-data.html')
       assert.equal(a.title, 'Using Node.js streams to massage data into the format you want')
       assert(/^Google provides some pretty cool flu data.*/.test(a.description))
-
+      assert.equal(a.summary, 'Google provides some pretty cool flu data in CSV format, and I wanted to display that in a chart at ')
       done()
     })
   })

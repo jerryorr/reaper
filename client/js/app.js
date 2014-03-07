@@ -40,7 +40,7 @@ feedMenu.on('feed:select', function (feedModel) {
 })
 
 
-}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_9010150.js","/")
+}).call(this,require("/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_df830075.js","/")
 },{"./feed-content":6,"./feed-content/article":4,"./feed-content/articles":5,"./feed-menu":10,"./feed-menu/feed":8,"./feed-menu/feeds":9,"/Users/jerryorr/git/reaper/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":16,"backbone":11,"buffer":13,"jQuery":17}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var Backbone = require('backbone')
@@ -76,9 +76,12 @@ module.exports = Backbone.View.extend({
 
   render: function () {
     this.$el.append('<span class="title">' + this.model.get('title') + '</span>'
-      + '<span class="description">' + this.model.get('description') + '</span>'
+      + '<span class="summary">' + this.model.get('summary') + '</span>'
       + '<a class="link btn btn-default" target="fr-' + this.model.id + '" href="' + this.model.get('link') + '" title="View Full Page">'
       + '<span class="glyphicon glyphicon-arrow-right"></span></a>')
+
+    // TODO logic to show full article ('description')
+
     return this
   }
 })
