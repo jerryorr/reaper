@@ -23,7 +23,8 @@
     "nock": "^0.27.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run-script test-server",
+    "test-server": "NODE_ENV=testing ./node_modules/.bin/mocha -R spec server/test"
   },
   "repository": {
     "type": "git",
