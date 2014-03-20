@@ -13,3 +13,7 @@ results
 
 npm-debug.log
 node_modules
+
+# Built files
+client/js/app.js
+client/test/bundle/all-tests.js
