@@ -1,4 +1,5 @@
 body {
+  background-color: #FAFAFA;
   padding-top: 50px;
 }
 
@@ -11,7 +12,6 @@ body, html {
   height: 100%;
   margin-left: 0px;
   padding-left: 0px;
-  background-color: #FAFAFA;
 }
 
 .fr-feed-menu {
@@ -58,4 +58,10 @@ body, html {
 
 .fr-feed-content-article .link {
 
+}
+
+.fr-feed-content-article iframe.description {
+  display: block;
+  width: 100%;
+  border: none;
 }
